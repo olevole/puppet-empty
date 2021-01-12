@@ -1,8 +1,7 @@
 #!/bin/sh
-
 autosign()
 {
-	#echo "`date`: auto-sign for: ${HST}" >> /var/log/puppetlabs/puppetserver/autosign.log
+	echo "`date`: auto-sign for: ${HST}" >> /var/log/puppetserver/autosign.log
 	#[ ${is_testing} -eq 1 ] && <notify_scr> "new testing environment, auto-sign for: *${HST}*\n"
 	exit 0
 }
@@ -19,14 +18,17 @@ HST="${1}"
 [ "${HST}" = "node04.cloud.com" ] && autosign
 [ "${HST}" = "node05.cloud.com" ] && autosign
 
-# autosign for xxx.*test*.my.doman
 SUB_DOMAIN=$( echo ${HST} | tr "." " " | awk '{printf $2}' )
+echo "`date` request: ${HST}, subdomain: ${SUB_DOMAIN}" >> /var/log/puppetserver/autosign-request.log
+
 case "${SUB_DOMAIN}" in
-	*test*)
+	test)
+		# autosign for xxx.*test*.domain
 		is_testing=1
 		autosign
 		;;
-	*my.domain)
+	my)
+		# autosign for xxx.*my*.domain
 		is_testing=1
 		autosign
 		;;
