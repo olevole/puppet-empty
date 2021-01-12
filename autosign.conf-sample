@@ -1,0 +1,38 @@
+#!/bin/sh
+
+autosign()
+{
+	#echo "`date`: auto-sign for: ${HST}" >> /var/log/puppetlabs/puppetserver/autosign.log
+	#[ ${is_testing} -eq 1 ] && <notify_scr> "new testing environment, auto-sign for: *${HST}*\n"
+	exit 0
+}
+
+
+# MAIN
+is_testing=0
+HST="${1}"
+[ -z "${HST}" ] && exit 1
+
+# autosing for gold image by name
+[ "${HST}" = "master.cloud.com" ] && autosign
+[ "${HST}" = "master2.cloud.com" ] && autosign
+[ "${HST}" = "node04.cloud.com" ] && autosign
+[ "${HST}" = "node05.cloud.com" ] && autosign
+
+# autosign for xxx.*test*.my.doman
+SUB_DOMAIN=$( echo ${HST} | tr "." " " | awk '{printf $2}' )
+case "${SUB_DOMAIN}" in
+	*test*)
+		is_testing=1
+		autosign
+		;;
+	*my.domain)
+		is_testing=1
+		autosign
+		;;
+	*)
+	;;
+esac
+
+# no sign
+exit 1

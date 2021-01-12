@@ -1,0 +1,2 @@
+puppetserver ca clean --certname=host.my.domain
+
