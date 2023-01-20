@@ -10,6 +10,17 @@ For FreeBSD
    gem install hiera
    gem install hiera-eyaml
 ```
+
+*!notes!* if you get an error `LoadError: no such file to load -- /usr/local/lib/ruby/gems/3.0/gems/psych-5.0.2/lib/psych_jars, please checkout work-around from https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=261141#c7:
+```
+cat > /usr/local/lib/ruby/gems/3.0/gems/psych-5.0.2/lib/psych_jars.rb <<EOF
+require 'psych.jar'
+
+require 'jar-dependencies'
+require_jar('org.yaml', 'snakeyaml', Psych::DEFAULT_SNAKEYAML_VERSION)
+EOF
+```
+
 3) `echo '127.0.0.1 puppet' >> /etc/hosts`
 4) `mv /usr/local/etc/puppet /usr/local/etc/puppet-o`
 5) `git clone https://github.com/olevole/puppet-empty.git /usr/local/etc/puppet`
