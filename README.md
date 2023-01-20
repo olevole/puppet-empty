@@ -2,7 +2,7 @@ For FreeBSD
 
 # Local/FS installation
 
-1) `pkg install puppet7 puppetserver7 rubygem-hiera rubygem-hiera-eyaml rubygem-hiera-file git rubygem-psych`
+1) `pkg install -y puppet7 puppetserver7 rubygem-hiera rubygem-hiera-eyaml rubygem-hiera-file git rubygem-psych`
 2) `puppetserver gem install hiera-eyaml eyaml`
 
    and/or:
