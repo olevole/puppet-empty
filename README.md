@@ -20,19 +20,20 @@ require 'jar-dependencies'
 require_jar('org.yaml', 'snakeyaml', Psych::DEFAULT_SNAKEYAML_VERSION)
 EOF
 ```
+3) restore 'puppet' owner for /var/puppet/server/data/puppetserver dir: `chown puppet /var/puppet/server/data/puppetserver` after previous step, because you will get an error when starting puppetserver ( File[/var/puppet/server/data/puppetserver/locales]: change from 'absent' to 'directory' failed: Could not set 'directory' on ensure: Permission denied - /var/puppet/server/data/puppetserver/locales )
 
-3) `echo '127.0.0.1 puppet' >> /etc/hosts`
-4) `mv /usr/local/etc/puppet /usr/local/etc/puppet-o`
-5) `git clone https://github.com/olevole/puppet-empty.git /usr/local/etc/puppet`
-6) `rm -rf /usr/local/etc/puppet/.git`
-7) `service puppetserver enable`
-8) `service puppetserver start`
-9) // wait for java/puppetservice process fully started ( ~10-15 sec: check when CPU consumption by process will be low )
-10) check puppetserver/puppet agent: `puppet agent -t`
-11) drop 'code/modules' dir into /usr/local/etc/puppet/ e.g: https://forge.puppet.com/zleslie/pkgng
+4) `echo '127.0.0.1 puppet' >> /etc/hosts`
+5) `mv /usr/local/etc/puppet /usr/local/etc/puppet-o`
+6) `git clone https://github.com/olevole/puppet-empty.git /usr/local/etc/puppet`
+7) `rm -rf /usr/local/etc/puppet/.git`
+8) `service puppetserver enable`
+9) `service puppetserver start`
+10) // wait for java/puppetservice process fully started ( ~10-15 sec: check when CPU consumption by process will be low )
+11) check puppetserver/puppet agent: `puppet agent -t`
+12) drop 'code/modules' dir into /usr/local/etc/puppet/ e.g: https://forge.puppet.com/zleslie/pkgng
 ``` 
    puppet module install zleslie-pkgng
 ```
-12) `ln -sf /usr/local/etc/puppet/modules /usr/local/etc/puppet/code/environments/modules`
+13) `ln -sf /usr/local/etc/puppet/modules /usr/local/etc/puppet/code/environments/modules`
 
 # GitLab integration
