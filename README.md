@@ -36,4 +36,9 @@ EOF
 ```
 13) `ln -sf /usr/local/etc/puppet/modules /usr/local/etc/puppet/code/environments/modules`
 
+# Usage
+
+- Use /usr/local/etc/puppet/code/environments/production/data/nodes directory to assign role per host
+- Use /usr/local/etc/puppet/code/environments/production/data/role directory to describe role
+
 # GitLab integration
