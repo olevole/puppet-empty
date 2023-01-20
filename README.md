@@ -20,7 +20,7 @@ require 'jar-dependencies'
 require_jar('org.yaml', 'snakeyaml', Psych::DEFAULT_SNAKEYAML_VERSION)
 EOF
 ```
-3) restore 'puppet' owner for /var/puppet/server/data/puppetserver dir: `chown puppet /var/puppet/server/data/puppetserver` after previous step, because you will get an error when starting puppetserver ( File[/var/puppet/server/data/puppetserver/locales]: change from 'absent' to 'directory' failed: Could not set 'directory' on ensure: Permission denied - /var/puppet/server/data/puppetserver/locales )
+3) restore 'puppet' owner for /var/puppet/server/data/puppetserver dir: `chown puppet /var/puppet/server/data/puppetserver` after previous step, because you will get an error when starting puppetserver ( `File[/var/puppet/server/data/puppetserver/locales]: change from 'absent' to 'directory' failed: Could not set 'directory' on ensure: Permission denied - /var/puppet/server/data/puppetserver/locales` )
 
 4) `echo '127.0.0.1 puppet' >> /etc/hosts`
 5) `mv /usr/local/etc/puppet /usr/local/etc/puppet-o`
