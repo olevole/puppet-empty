@@ -2,7 +2,7 @@ For FreeBSD
 
 # Local/FS installation
 
-1) `pkg install -y puppet7 puppetserver7 rubygem-hiera rubygem-hiera-eyaml rubygem-hiera-file git rubygem-psych`
+1) `pkg install -y puppet8 puppetserver8 rubygem-hiera rubygem-hiera-eyaml rubygem-hiera-file git rubygem-psych`
 2) `puppetserver gem install hiera-eyaml eyaml`
 
    and/or:
@@ -26,15 +26,16 @@ EOF
 5) `mv /usr/local/etc/puppet /usr/local/etc/puppet-o`
 6) `git clone https://github.com/olevole/puppet-empty.git /usr/local/etc/puppet`
 7) `rm -rf /usr/local/etc/puppet/.git`
-8) `service puppetserver enable`
-9) `service puppetserver start`
-10) // wait for java/puppetservice process fully started ( ~10-15 sec: check when CPU consumption by process will be low )
-11) check puppetserver/puppet agent: `puppet agent -t`
-12) drop 'code/modules' dir into /usr/local/etc/puppet/ e.g: https://forge.puppet.com/zleslie/pkgng
+8) `chown -R puppet:puppet /var/puppet`
+9) `service puppetserver enable`
+10) `service puppetserver start`
+11) // wait for java/puppetservice process fully started ( ~10-15 sec: check when CPU consumption by process will be low )
+12) check puppetserver/puppet agent: `puppet agent -t`
+13) drop 'code/modules' dir into /usr/local/etc/puppet/ e.g: https://forge.puppet.com/zleslie/pkgng
 ``` 
    puppet module install zleslie-pkgng
 ```
-13) `ln -sf /usr/local/etc/puppet/modules /usr/local/etc/puppet/code/environments/modules`
+14) `ln -sf /usr/local/etc/puppet/modules /usr/local/etc/puppet/code/environments/modules`
 
 # Usage
 
